@@ -22,6 +22,13 @@ module.exports.routes = {
   "POST /register": { action: "Register/createAccount" },
 
   "GET /getTasks": { action: "Tasks/getTasks" },
+
+  // chat
+  "POST /api/messages": "ChatController.create",
+  "GET /api/messages": "ChatController.list",
+  "PUT /api/messages/:id": "ChatController.update",
+  "DELETE /api/messages/:id": "ChatController.delete",
+
   /***************************************************************************
    *                                                                          *
    * More custom routes here...                                               *

@@ -2,6 +2,7 @@ module.exports = {
   datastores: {
     APP_CHAT: {
       adapter: "sails-mongo",
+      // migrate: 'alter',
       url: "mongodb+srv://turborvip:123456a@cluster0.2ev9png.mongodb.net/app-chat-sails?retryWrites=true&w=majority",
     },
   },

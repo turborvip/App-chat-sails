@@ -2,6 +2,7 @@ import React from 'react';
 
 // Layout
 import { LayoutOther } from '../components/Layout';
+import Chat from '../page/Chat';
 
 // Page
 const Home = React.lazy(() => import('../page/Home'));
@@ -36,6 +37,8 @@ let publicRouters: Router[] = [
     component: Test,
     layout: LayoutOther,
   },
+  {path:'/chat',name:'Chat', component:Chat,layout:null},
+
 ];
 let privateRouters: Router[] = [
   { path: '/todo', name: 'To Do List', component: TodoList },
