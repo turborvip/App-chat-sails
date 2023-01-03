@@ -45,15 +45,16 @@ axios.interceptors.response.use(
         local.add('accessToken',JSON.stringify(result.data.accessToken));
       }
     }
+    if(res?.data?.msg) $message.success(res?.data?.msg);
     return res;
   },
   (err) => {
     console.log('err',err)
     $message.error(err?.response?.data.msg);
-    if(!err?.response?.data?.refreshToken){
+    if(err?.response?.data?.errRefreshToken){
       local.clear();
-      window.confirm("Your session is expired...");
       window.location.replace('./login');
+      window.confirm("Your session is expired...");
     }
     return err
   }

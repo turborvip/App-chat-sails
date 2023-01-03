@@ -8,6 +8,8 @@ const Home = React.lazy(() => import('../page/Home'));
 const Test = React.lazy(() => import('../page/Test'));
 const TodoList = React.lazy(() => import('../page/TodoList'));
 const Login = React.lazy(() => import('../components/Login/Login'));
+const SignUp = React.lazy(() => import('../components/SignUp'));
+
 
 interface Router {
   path: string;
@@ -27,6 +29,7 @@ let routes: Routes;
 let publicRouters: Router[] = [
   { path: '/', name: 'Home', component: Home },
   { path: '/login', name: 'Login', component: Login,layout:null },
+  {path:'/sign-up',name:'Sign Up', component:SignUp,layout:null},
   {
     path: '/testLayout',
     name: 'Test Layout',

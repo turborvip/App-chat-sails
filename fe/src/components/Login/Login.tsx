@@ -16,11 +16,13 @@ const Login:React.FC= () => {
 
   const onFinish = async (values: {username:string,password:string}) => {
     setLoading(true);
-    await dispatch(loginInClient(values));
+    const res = await dispatch(loginInClient(values));
     setLoading(false);
+    console.log(values)
   };
 
   useEffect(() => {
+    console.log('isLogged',isLogged)
     if(isLogged){
       const search = formatSearch(location.search);
       const from = search.from || { pathname: '/' };

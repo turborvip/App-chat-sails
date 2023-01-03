@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../services/axios';
 import local from '../utils/localStorage';
-
+import * as apiConfig from '../services/apiConfig'
+import { SignUpPayload } from '../interface/user/signup';
 interface Account {
   username: string;
   password: string;
@@ -35,13 +36,11 @@ export const loginInClient = createAsyncThunk(
   }
 );
 
+
 const userSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {
-    login: (state) => {
-        state.isLogged = true;
-    },
     logout: (state) => {
       state.accessToken = null;
       state.isLogged = false;
@@ -54,22 +53,25 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(loginInClient.fulfilled, (state, action: any) => {
-        state.isLogged = true;
-        state.isLoading = false;
-        state.error = '';
-        state.accessToken = action.payload?.accessToken;
-        state.userInfo = action.payload?.user;
-        local.add('user', JSON.stringify(action.payload?.user));
-        local.add(
-          'accessToken',
-          JSON.stringify(action.payload?.accessToken)
-        );
-        local.add(
-          'refreshToken',
-          JSON.stringify(action.payload?.refreshToken)
-        );
+        if(action.payload){
+          state.isLogged = true;
+          state.isLoading = false;
+          state.error = '';
+          state.accessToken = action.payload?.accessToken;
+          state.userInfo = action.payload?.user;
+          local.add('user', JSON.stringify(action.payload?.user));
+          local.add(
+            'accessToken',
+            JSON.stringify(action.payload?.accessToken)
+          );
+          local.add(
+            'refreshToken',
+            JSON.stringify(action.payload?.refreshToken)
+          );
+        }
       })
       .addCase(loginInClient.rejected, (state, action: any) => {
+        console.log('aaaa')
         state.isLoading = false;
         state.error = action.payload.error;
       })
@@ -77,4 +79,4 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
-export const { login, logout } = userSlice.actions;
+export const { logout } = userSlice.actions;
