@@ -8,7 +8,9 @@
  * For more information on configuration, check out:
  * https://sailsjs.com/config/http
  */
-
+const requestIp = require('request-ip');
+const express = require('express');
+const _ = require('lodash');
 module.exports.http = {
 
   /****************************************************************************
@@ -29,17 +31,47 @@ module.exports.http = {
     *                                                                          *
     ***************************************************************************/
 
-    // order: [
-    //   'cookieParser',
-    //   'session',
-    //   'bodyParser',
-    //   'compress',
-    //   'poweredBy',
-    //   'router',
-    //   'www',
-    //   'favicon',
-    // ],
+    order: [
+      'cookieParser',
+      'logApiCall',
+      'getIp',
+      'cookieParser',
+      'session',
+      'bodyParser',
+      'compress',
+      'poweredBy',
+      'router',
+      'www',
+      'favicon',
+    ],
 
+    getIp: function (req, res, next) {
+      const clientIp = requestIp.getClientIp(req);
+      // console.log('req.originalUrl-----getIp', req.originalUrl)
+      // console.log('req.query----getIp', req.query)
+
+      req.clientIp = clientIp;
+      if (!req.body) req.body = {}
+      req.body.ip = clientIp;
+      return next();
+    },
+    logApiCall: (function () {
+      return function (req, res, next) {
+        // req.setTimeout(40000);
+        let startTime = new Date().getTime();
+        res.on('close', (err) => {
+          console.log('***********CLOSE*************')
+        })
+        // console.log("Requested :: ", req.method, req.url, req.headers.authorization, req.body);
+        console.log("Requested :: ", req.method, req.url, req.body);
+        res.on('end', () => {
+        })
+        res.on('finish', (res) => {
+
+        })
+        return next();
+      }
+    })(),
 
     /***************************************************************************
     *                                                                          *
@@ -49,11 +81,14 @@ module.exports.http = {
     *                                                                          *
     ***************************************************************************/
 
-    // bodyParser: (function _configureBodyParser(){
-    //   var skipper = require('skipper');
-    //   var middlewareFn = skipper({ strict: true });
-    //   return middlewareFn;
-    // })(),
+    bodyParser: (function _configureBodyParser(){
+      var skipper = require('skipper');
+      var middlewareFn = skipper({
+        strict: true,
+        // ... more Skipper options here ...
+      });
+      return middlewareFn;
+    })(),
 
   },
 

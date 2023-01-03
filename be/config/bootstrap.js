@@ -9,7 +9,7 @@
  * https://sailsjs.com/config/bootstrap
  */
 
-module.exports.bootstrap = async function() {
+module.exports.bootstrap = async function(cb) {
 
   // By convention, this is a good place to set up fake data during development.
   //
@@ -27,4 +27,20 @@ module.exports.bootstrap = async function() {
   // ]);
   // ```
 
+  await bootstrapAllControllers();
+  console.log('Server is already!');
+
+  cb();
+
 };
+
+let bootstrapAllControllers = async () => {
+  let promises = [];
+  for (var index in sails.models) {
+    let model = sails.models[index];
+    if (model.bootstrap) {
+      promises.push(model.bootstrap());
+    }
+  }
+  await Promise.all(promises);
+}

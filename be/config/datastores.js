@@ -48,9 +48,6 @@ module.exports.datastores = {
     *    (See https://sailsjs.com/config/datastores for help.)                 *
     *                                                                          *
     ***************************************************************************/
-   
-    adapter: 'sails-mongo',
-    url: 'mongodb://localhost:27017/todolist',
 
   },
 

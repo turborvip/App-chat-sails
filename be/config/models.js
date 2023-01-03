@@ -15,7 +15,10 @@
 
 module.exports.models = {
 
-
+  fetchRecordsOnUpdate: true,
+  fetchRecordsOnCreate: true,
+  fetchRecordsOnCreateEach: true,
+  fetchRecordsOnDestroy: true,
   /***************************************************************************
   *                                                                          *
   * Whether model methods like `.create()` and `.update()` should ignore     *
@@ -36,7 +39,7 @@ module.exports.models = {
   ***************************************************************************/
 
   // schema: true,
-
+  datastore: 'APP_CHAT',
 
   /***************************************************************************
   *                                                                          *
@@ -53,7 +56,7 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
 
-  migrate: 'alter',
+  migrate: 'safe',
 
 
   /***************************************************************************
@@ -71,7 +74,7 @@ module.exports.models = {
   attributes: {
     createdAt: { type: 'number', autoCreatedAt: true, },
     updatedAt: { type: 'number', autoUpdatedAt: true, },
-    id: { type: 'number', autoIncrement: true, },
+    id: { type: 'string', columnName: '_id' },
     //--------------------------------------------------------------------------
     //  /\   Using MongoDB?
     //  ||   Replace `id` above with this instead:
@@ -118,7 +121,7 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
 
-  cascadeOnDestroy: true
-
+  cascadeOnDestroy: true,
+  schema: true
 
 };
