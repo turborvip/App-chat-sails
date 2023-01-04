@@ -27,6 +27,16 @@ module.exports.bootstrap = async function(cb) {
   // ]);
   // ```
 
+  // Log connection and disconnection socket
+  sails.io.on("connection", (socket) => {
+    console.log(`Client connected: ${socket.id}`);
+
+    // Listen for disconnections
+    socket.on("disconnect", () => {
+      console.log(`Client disconnected: ${socket.id}`);
+    });
+  });
+
   await bootstrapAllControllers();
   console.log('Server is already!');
 

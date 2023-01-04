@@ -35,8 +35,6 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   async(res) => {
-    // $message.success(response?.data?.msg);
-    console.log(res);
     if(res?.data?.status == 401 && !res?.data?.auth){
       //refresh token...
       const refreshToken = local.get('refreshToken') || null;

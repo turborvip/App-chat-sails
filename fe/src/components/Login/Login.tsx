@@ -18,7 +18,6 @@ const Login:React.FC= () => {
     setLoading(true);
     const res = await dispatch(loginInClient(values));
     setLoading(false);
-    console.log(values)
   };
 
   useEffect(() => {
