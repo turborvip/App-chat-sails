@@ -1,16 +1,15 @@
-import React from 'react';
+import React from "react";
 
 // Layout
-import { LayoutOther } from '../components/Layout';
-import Chat from '../page/Chat';
+import { LayoutOther } from "../components/Layout";
 
 // Page
-const Home = React.lazy(() => import('../page/Home'));
-const Test = React.lazy(() => import('../page/Test'));
-const TodoList = React.lazy(() => import('../page/TodoList'));
-const Login = React.lazy(() => import('../components/Login/Login'));
-const SignUp = React.lazy(() => import('../components/SignUp'));
-
+const Home = React.lazy(() => import("../page/Home"));
+const Test = React.lazy(() => import("../page/Test"));
+const TodoList = React.lazy(() => import("../page/TodoList"));
+const Login = React.lazy(() => import("../components/Login/Login"));
+const SignUp = React.lazy(() => import("../components/SignUp"));
+const Chat = React.lazy(() => import("../page/Chat"));
 
 interface Router {
   path: string;
@@ -28,21 +27,23 @@ interface Routes {
 let routes: Routes;
 
 let publicRouters: Router[] = [
-  { path: '/', name: 'Home', component: Home },
-  { path: '/login', name: 'Login', component: Login,layout:null },
-  {path:'/sign-up',name:'Sign Up', component:SignUp,layout:null},
+  { path: "/", name: "Home", component: Home },
+  { path: "/login", name: "Login", component: Login, layout: null },
+  { path: "/sign-up", name: "Sign Up", component: SignUp, layout: null },
   {
-    path: '/testLayout',
-    name: 'Test Layout',
+    path: "/testLayout",
+    name: "Test Layout",
     component: Test,
     layout: LayoutOther,
   },
-  {path:'/chat',name:'Chat', component:Chat,layout:null},
+];
+
+let privateRouters: Router[] = [
+  { path: "/todo", name: "To Do List", component: TodoList },
+  { path: "/chat", name: "Chat", component: Chat },
 
 ];
-let privateRouters: Router[] = [
-  { path: '/todo', name: 'To Do List', component: TodoList },
-];
+
 routes = {
   publicRouters,
   privateRouters,

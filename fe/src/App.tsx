@@ -47,34 +47,34 @@ const App: FC = () => {
               />
             );
           })}
-          <Route element={<PrivateRoute path={'/todo'} />} path={'/todo'}>
-            {routes.privateRouters.map((route, index) => {
-              const Page = route.component;
-              let Layout;
-              if (route?.layout) {
-                Layout = route.layout;
-              }
-              if (!route?.layout) {
-                Layout = DefaultLayout;
-              }
-              if (route.layout === null) {
-                Layout = React.Fragment;
-              }
-              return (
-                <Route
-                  key={index}
-                  path={route.path}
-                  element={
-                    <React.Suspense fallback={<Loader />}>
-                      <Layout>
-                        <Page />
-                      </Layout>
-                    </React.Suspense>
-                  }
-                />
-              );
-            })}
-          </Route>
+            <Route element={<PrivateRoute />}>
+              {routes.privateRouters.map((route, index) => {
+                const Page = route.component;
+                let Layout;
+                if (route?.layout) {
+                  Layout = route.layout;
+                }
+                if (!route?.layout) {
+                  Layout = DefaultLayout;
+                }
+                if (route.layout === null) {
+                  Layout = React.Fragment;
+                }
+                return (
+                  <Route
+                    key={index}
+                    path={route.path}
+                    element={
+                      <React.Suspense fallback={<Loader />}>
+                        <Layout>
+                          <Page />
+                        </Layout>
+                      </React.Suspense>
+                    }
+                  />
+                );
+              })}
+            </Route>
           <Route element={'404'} path={'*'}></Route>
         </Routes>
       </div>

@@ -19,9 +19,6 @@ import { css } from '@emotion/css';
 import { Button, Divider, Popover, Input, theme } from 'antd';
 import React, { useState } from 'react';
 import defaultProps from './defaultProps';
-import { ConfigProvider } from 'antd';
-import enUS from 'antd/lib/locale/en_US';
-
 
 const Item: React.FC<{ children: React.ReactNode }> = (props) => {
   const { token } = theme.useToken();
@@ -268,7 +265,6 @@ export default () => {
         height: '100vh',
       }}
     >
-      <ConfigProvider locale={enUS}>
       <ProConfigProvider hashed={false} >
         <ProLayout
           locale="en-US"
@@ -409,7 +405,6 @@ export default () => {
 
         </ProLayout>
       </ProConfigProvider>
-      </ConfigProvider>
     </div>
   );
 };
