@@ -28,7 +28,7 @@ const createAccount = async (req, res) => {
             name: name,
             password: encryptedPassword,
             email: email,
-            status: 1,
+            status: 'unactive',
           });
           //get id_user just created
           let user = await Users.findOne({ username: username });

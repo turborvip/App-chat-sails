@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
-import { connect } from "../../../services/socketIO";
+import { connect } from "../../services/socketIO";
 import { Responsive, WidthProvider } from "react-grid-layout";
-import AntdIcon from "../../../components/icons/AntdIcons";
-
-// import "react-grid-layout/css/styles.css";
+import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 
 import "./styles.less";
-import { AutoComplete, Button, Input } from "antd";
-
 import Option from "./Option";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 function Chat() {
+
   useEffect(() => {
     // Connect to the Socket.io server
     const socket = connect();
@@ -23,8 +20,8 @@ function Chat() {
   }, []);
 
   const layout1 = [
-    { i: "option", x: 0, y: 0, w: 24, h: 5, static: true },
-    { i: "content", x: 24, y: 0, w: 24, h: 5, static: true },
+    { i: "option", x: 0, y: 0, w: 5, h: 5, static: true },
+    { i: "content", x: 5, y: 0, w: 19, h: 5, static: true },
   ];
 
   const layout2 = [
@@ -47,32 +44,37 @@ function Chat() {
     xxl: layout3,
   };
 
+  const onBreakpointChange = (breakpoint: any) => {
+    // setBreakpoint(breakpoint);
+    console.log(breakpoint)
+  };
+
   const dataFriends = [
     { value: "Burns Bay Road" },
     { value: "Downing Street" },
     { value: "Wall Street" },
   ];
 
-  
-
   return (
     <div className="chat_wrapper">
       <ResponsiveGridLayout
         className="chat_layout"
         layouts={layouts}
-        cols={{ lg: 24, md: 24, sm: 24, xs: 24, xxs: 24 }}
-        margin={[0,0]}
+        cols={{xxl:24,xl:24, lg: 24, md: 24, sm: 24, xs: 24, xxs:24 }}
+        margin={[0, 0]}
         // onResize={onResize}
         // measureBeforeMount={true}
+        onBreakpointChange={onBreakpointChange}
+        onLayoutChange={(a,b)=>console.log(a,b)}
         resizeHandles={[]}
       >
-        <div key="option" className="option_pannel">
+        <div key="option" className="option_panel">
           <Option dataFriends={dataFriends}/>
         </div>
-        <div key="content" className="content_pannel">
+        <div key="content" className="content_panel">
           Hinh 2
         </div>
-        <div key="friend" className="friend_pannel">
+        <div key="friend" className={`friend_panel && 'd-none'}`}>
           Hinh 3
         </div>
       </ResponsiveGridLayout>

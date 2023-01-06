@@ -1,17 +1,13 @@
 import {
-  Affix,
   AutoComplete,
   Avatar,
   Button,
   Divider,
   Input,
   List,
-  Skeleton,
-  Space,
-  Tag,
 } from "antd";
 import { useEffect, useState } from "react";
-import AntdIcon from "../../../components/icons/AntdIcons";
+import AntdIcon from "../../components/icons/AntdIcons";
 
 interface Props {
   dataFriends: any;

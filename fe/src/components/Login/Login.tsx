@@ -1,34 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
-import { useAppDispatch,useAppSelector } from '../../redux/store';
-import { loginInClient } from '../../redux/userSlice';
-import {useNavigate,useLocation} from 'react-router-dom'
-import {formatSearch} from '../../utils/formatSearch'
+import React, { useEffect, useState } from "react";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Form, Input, Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { loginInClient } from "../../redux/userSlice";
+import { useNavigate, useLocation } from "react-router-dom";
+import { formatSearch } from "../../utils/formatSearch";
 
-const Login:React.FC= () => {
+const Login: React.FC = () => {
   const [loading, setLoading] = useState(false);
-  const {isLogged } = useAppSelector(state => state.user);
+  const { isLogged } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const onFinish = async (values: {username:string,password:string}) => {
+  const onFinish = async (values: { username: string; password: string }) => {
     setLoading(true);
     const res = await dispatch(loginInClient(values));
     setLoading(false);
   };
 
   useEffect(() => {
-    console.log('isLogged',isLogged)
-    if(isLogged){
+    console.log("isLogged", isLogged);
+    if (isLogged) {
       const search = formatSearch(location.search);
-      const from = search.from || { pathname: '/welcome' };
+      const from = search.from || { pathname: "/welcome" };
       navigate(from);
     }
-  }, [isLogged,location,navigate])
-  
+  }, [isLogged, location, navigate]);
 
   const antIcon = <LoadingOutlined style={{ fontSize: 20 }} spin />;
   return (
@@ -40,13 +39,16 @@ const Login:React.FC= () => {
     >
       <Form.Item
         name="username"
-        rules={[{ required: true, message: 'Please input your Username!' }]}
+        rules={[{ required: true, message: "Please input your Username!" }]}
       >
-        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+        <Input
+          prefix={<UserOutlined className="site-form-item-icon" />}
+          placeholder="Username"
+        />
       </Form.Item>
       <Form.Item
         name="password"
-        rules={[{ required: true, message: 'Please input your Password!' }]}
+        rules={[{ required: true, message: "Please input your Password!" }]}
       >
         <Input
           prefix={<LockOutlined className="site-form-item-icon" />}
@@ -55,14 +57,26 @@ const Login:React.FC= () => {
         />
       </Form.Item>
       <Form.Item>
-      <Spin spinning={loading} indicator={antIcon}>
-        <Button type="primary" htmlType="submit" className="login-form-button btn-form-login">
-          Log in
-        </Button>
-      </Spin>
+        <Spin spinning={loading} indicator={antIcon}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login-form-button btn-form-login"
+          >
+            Log in
+          </Button>
+          <Button
+            href="../sign-up"
+            type="link"
+            htmlType="submit"
+            className="login-form-button btn-form-login"
+          >
+            Register
+          </Button>
+        </Spin>
       </Form.Item>
     </Form>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

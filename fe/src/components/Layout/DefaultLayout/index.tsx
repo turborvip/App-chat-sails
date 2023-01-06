@@ -15,6 +15,7 @@ import {
   QuestionCircleFilled,
 } from "@ant-design/icons";
 import localStorage from "../../../utils/localStorage";
+import { getGlobalState } from "../../../utils/getGlobal";
 
 type MyComponentProps = React.PropsWithChildren<{}>;
 const DefaultLayout: React.FC<{ children: React.ReactNode }> = ({
@@ -34,6 +35,16 @@ const DefaultLayout: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     navigate(pathname)
   }, [pathname])
+
+  // useEffect(() => {
+  //   window.onresize = () => {
+  //     const { device } = getGlobalState();
+  //     const rect = document.body.getBoundingClientRect();
+  //     const needCollapse = rect.width < 992;
+  //     localStorage.add('needCollapse',String(needCollapse))
+  //     localStorage.add('device',device)
+  //   };
+  // }, []);
 
   const headerTitle = (logo: any, title: any, _: any) => {
     const defaultDom = (

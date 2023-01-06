@@ -14,7 +14,7 @@ const Admin = React.lazy(() => import("../page/Admin"));
 const TodoList = React.lazy(() => import("../page/Admin/TodoList"));
 
 // chat page
-const Chat = React.lazy(() => import("../page/Admin/Chat/Chat"));
+const Chat = React.lazy(() => import("../page/Chat/Chat"));
 
 interface Router {
   path: string;
