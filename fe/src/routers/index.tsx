@@ -1,15 +1,20 @@
 import React from "react";
 
-// Layout
+//--------------- Layout-------------------//
 import { LayoutOther } from "../components/Layout";
 
-// Page
-const Home = React.lazy(() => import("../page/Home"));
-const Test = React.lazy(() => import("../page/Test"));
-const TodoList = React.lazy(() => import("../page/TodoList"));
+//---------------- Page--------------------//
+const Welcome = React.lazy(() => import("../page/Welcome"));
 const Login = React.lazy(() => import("../components/Login/Login"));
 const SignUp = React.lazy(() => import("../components/SignUp"));
-const Chat = React.lazy(() => import("../page/Chat"));
+const Test = React.lazy(() => import("../page/Test"));
+
+// admin page
+const Admin = React.lazy(() => import("../page/Admin"));
+const TodoList = React.lazy(() => import("../page/Admin/TodoList"));
+
+// chat page
+const Chat = React.lazy(() => import("../page/Admin/Chat/Chat"));
 
 interface Router {
   path: string;
@@ -27,7 +32,7 @@ interface Routes {
 let routes: Routes;
 
 let publicRouters: Router[] = [
-  { path: "/", name: "Home", component: Home },
+  { path: "/welcome", name: "Home", component: Welcome },
   { path: "/login", name: "Login", component: Login, layout: null },
   { path: "/sign-up", name: "Sign Up", component: SignUp, layout: null },
   {
@@ -39,7 +44,10 @@ let publicRouters: Router[] = [
 ];
 
 let privateRouters: Router[] = [
-  { path: "/todo", name: "To Do List", component: TodoList },
+  // admin router
+  { path: "/admin", name: "Admin", component: Admin },
+  { path: "/admin/todo", name: "To Do List", component: TodoList },
+  // chat router
   { path: "/chat", name: "Chat", component: Chat },
 
 ];

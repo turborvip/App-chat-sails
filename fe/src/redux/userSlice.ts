@@ -1,8 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from '../services/axios';
 import local from '../utils/localStorage';
-import * as apiConfig from '../services/apiConfig'
-import { SignUpPayload } from '../interface/user/signup';
 interface Account {
   username: string;
   password: string;
@@ -17,7 +15,7 @@ interface LoginState {
 }
 
 const initialState: LoginState = {
-  isLogged: false,
+  isLogged: local.get('user') || false,
   isLoading: false,
   error: '',
   accessToken: null,

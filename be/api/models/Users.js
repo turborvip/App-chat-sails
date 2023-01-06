@@ -13,9 +13,10 @@ module.exports = {
       unique: true,
       isNotEmptyString: true,
     },
+    avatar:{type:"string"},
     password: { type: "string", allowNull: true, isNotEmptyString: true },
     name: { type: "string", allowNull: false },
     email: { type: "string", allowNull: false, isEmail: true },
-    status: { type: "boolean", allowNull: false },
+    status: { type: "string", required: true, isIn: ["active", "unactive","inmeeting"] },
   },
 };

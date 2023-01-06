@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../redux/store';
-import axios from '../services/axios';
+import { useAppDispatch } from '../../redux/store';
+import axios from '../../services/axios';
 
 function TodoList() {
   // const navigate = useNavigate()
@@ -25,7 +25,6 @@ function TodoList() {
 
   return (
     <div>TodoList
-      <Link to={'/'} >Go Home</Link>
       {(tasks.length > 0)&&tasks.map((item,idx) => (<div key={idx}>{item}</div>))}
     </div>
   )

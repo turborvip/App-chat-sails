@@ -18,7 +18,6 @@ import {
 import { css } from '@emotion/css';
 import { Button, Divider, Popover, Input, theme } from 'antd';
 import React, { useState } from 'react';
-import defaultProps from './defaultProps';
 
 const Item: React.FC<{ children: React.ReactNode }> = (props) => {
   const { token } = theme.useToken();
@@ -288,7 +287,6 @@ export default () => {
               width: '331px',
             },
           ]}
-          {...defaultProps}
           location={{
             pathname,
           }}

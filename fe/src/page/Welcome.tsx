@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import localStorage from "../utils/localStorage";
 import { useAppDispatch } from "../redux/store";
 import { logout } from "../redux/userSlice";
-function Home() {
+function Welcome() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -15,16 +15,15 @@ function Home() {
 
   return (
     <div className="home">
-      Home
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum nemo
+      aperiam sint corporis accusamus! Inventore corrupti reiciendis natus optio
+      iure quo facere aspernatur, nisi qui quas quod, explicabo, recusandae
+      consequatur.
       <div>
-        <Link to={"../todo"}>Go Todo</Link>
-        <br />
-        <Link to={"../chat"}>Go Chat</Link>
-        <br />
         <Button onClick={handleLogout}>Logout</Button>
       </div>
     </div>
   );
 }
 
-export default Home;
+export default Welcome;

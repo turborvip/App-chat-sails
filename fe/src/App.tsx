@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './scss/style.scss';
 import routes from '../src/routers';
 import Loader from './components/Loader';
 import { DefaultLayout } from './components/Layout';

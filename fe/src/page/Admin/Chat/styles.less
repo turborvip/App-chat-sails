@@ -1,0 +1,43 @@
+.chat_wrapper {
+  .chat_layout {
+    width: 100%;
+    .option_pannel {
+      background-color: rgb(255, 255, 255);
+      padding-top: 10px;
+      height: 100%;
+      position: relative;
+      .option_top {
+        &-search {
+          .ant-input-affix-wrapper {
+            background-color: rgb(237, 241, 241);
+            input {
+              background-color: rgb(237, 241, 241);
+            }
+          }
+        }
+        &-btn {
+          .ant-btn {
+            border: 0px !important;
+            border-radius: 10%;
+            &:hover {
+              background-color: rgb(237, 241, 241);
+              color: #333;
+            }
+          }
+        }
+      }
+      .option_main{
+        height: 650px;
+        overflow: auto;
+      }
+    }
+    .content_pannel {
+      padding-top: 10px;
+      background-color: tan;
+    }
+    .friend_pannel {
+      padding-top: 10px;
+      background-color: thistle;
+    }
+  }
+}

@@ -24,7 +24,7 @@ const Login:React.FC= () => {
     console.log('isLogged',isLogged)
     if(isLogged){
       const search = formatSearch(location.search);
-      const from = search.from || { pathname: '/' };
+      const from = search.from || { pathname: '/welcome' };
       navigate(from);
     }
   }, [isLogged,location,navigate])
