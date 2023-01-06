@@ -13,10 +13,18 @@ module.exports = {
       unique: true,
       isNotEmptyString: true,
     },
-    avatar:{type:"string"},
+    avatar: {
+      type: "string",
+      defaultsTo:
+        "https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png",
+    },
     password: { type: "string", allowNull: true, isNotEmptyString: true },
     name: { type: "string", allowNull: false },
     email: { type: "string", allowNull: false, isEmail: true },
-    status: { type: "string", required: true, isIn: ["active", "unactive","inmeeting"] },
+    status: {
+      type: "string",
+      required: true,
+      isIn: ["active", "unactive", "inmeeting"],
+    },
   },
 };

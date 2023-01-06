@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MenuCard from "./MenuCard";
 import SearchInput from "./SearchInput";
 import defaultProps from "./defaultProps";
-import {useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   PageContainer,
   ProConfigProvider,
@@ -10,12 +10,14 @@ import {
   ProSettings,
 } from "@ant-design/pro-components";
 import {
+  NotificationFilled,
   GithubFilled,
-  InfoCircleFilled,
-  QuestionCircleFilled,
+  UsergroupAddOutlined,
 } from "@ant-design/icons";
 import localStorage from "../../../utils/localStorage";
-import { getGlobalState } from "../../../utils/getGlobal";
+import AntdIcon from "../../../components/icons/AntdIcons";
+import { Button, Popover } from "antd";
+import ListFriend from "./ListFriends/ListFriend";
 
 type MyComponentProps = React.PropsWithChildren<{}>;
 const DefaultLayout: React.FC<{ children: React.ReactNode }> = ({
@@ -30,21 +32,11 @@ const DefaultLayout: React.FC<{ children: React.ReactNode }> = ({
   const navigate = useNavigate();
   let location = useLocation();
   const [pathname, setPathname] = useState(location.pathname);
-  const userInfo = localStorage.get('user')
+  const userInfo = localStorage.get("user");
 
   useEffect(() => {
-    navigate(pathname)
-  }, [pathname])
-
-  // useEffect(() => {
-  //   window.onresize = () => {
-  //     const { device } = getGlobalState();
-  //     const rect = document.body.getBoundingClientRect();
-  //     const needCollapse = rect.width < 992;
-  //     localStorage.add('needCollapse',String(needCollapse))
-  //     localStorage.add('device',device)
-  //   };
-  // }, []);
+    navigate(pathname);
+  }, [pathname]);
 
   const headerTitle = (logo: any, title: any, _: any) => {
     const defaultDom = (
@@ -81,7 +73,7 @@ const DefaultLayout: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const menuItem = (item: any, dom: any) => (
-    <div onClick={()=>setPathname(item?.path)}>{dom}</div>
+    <div onClick={() => setPathname(item?.path)}>{dom && dom}</div>
   );
 
   const actionHeader = (props: any) => {
@@ -90,11 +82,19 @@ const DefaultLayout: React.FC<{ children: React.ReactNode }> = ({
       props.layout !== "side" && document.body.clientWidth > 1400 ? (
         <SearchInput />
       ) : undefined,
-      <InfoCircleFilled key="InfoCircleFilled" />,
-      <QuestionCircleFilled key="QuestionCircleFilled" />,
+      <Popover placement="bottomRight" content={<ListFriend />} trigger="click">
+        <Button
+          type="ghost"
+          icon={AntdIcon.UsergroupAddOutlined}
+          style={{ color: "#878787" }}
+        />
+      </Popover>,
+      <NotificationFilled key="NotificationFilled" />,
       <GithubFilled key="GithubFilled" />,
     ];
   };
+
+  const handleListFriends = () => {};
 
   return (
     <div
@@ -114,7 +114,11 @@ const DefaultLayout: React.FC<{ children: React.ReactNode }> = ({
           location={{ pathname }}
           siderMenuType="group"
           menu={{ collapsedShowGroupTitle: true }}
-          avatarProps={{ src: userInfo?.avatar, size: "small", title: userInfo?.name }}
+          avatarProps={{
+            src: userInfo?.avatar,
+            size: "small",
+            title: userInfo?.name,
+          }}
           actionsRender={actionHeader}
           onMenuHeaderClick={(e) => console.log(e)}
         >

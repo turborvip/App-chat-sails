@@ -26,18 +26,196 @@
           }
         }
       }
-      .option_main{
+      .option_main {
         height: 650px;
         overflow: auto;
+        .ant-list-item {
+          gap: 3px;
+          .list_item-description {
+            overflow: hidden;
+          }
+          .list_content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+            justify-content: space-between;
+            .timestamp {
+              font-size: xx-small;
+            }
+            .num_new_mes {
+              button {
+                font-size: xx-small;
+              }
+            }
+          }
+        }
       }
     }
     .content_panel {
       padding-top: 10px;
-      background-color: tan;
+      background-color: white;
+      border-left: 1px solid rgb(240, 240, 240);
+      // border-right: 1px solid rgb(240, 240, 240);
+      position: relative;
+      height: 100%;
+      .content_wrapper {
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        .content_top {
+          flex: 1;
+          display: flex;
+          justify-content: space-between;
+          padding: 0 2%;
+          background-color: white;
+
+          &-left {
+            display: flex;
+            gap: 10px;
+            .title {
+              display: flex;
+              flex-direction: column;
+              justify-content: start;
+              font-size: large;
+              font-weight: bold;
+              .status {
+                font-size: small;
+                font-weight: lighter;
+                color: rgb(155, 155, 155);
+              }
+            }
+          }
+          &-right {
+            display: flex;
+            gap: 10px;
+          }
+        }
+        .content_main {
+          flex: 8;
+          overflow-y: auto;
+          background-color: rgb(248, 248, 248);
+          padding: 3%;
+          .message_content {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            .content {
+              background-color: rgb(235, 235, 235);
+              padding: 10px;
+              max-width: 60%;
+              border-radius: 13px;
+            }
+          }
+          .you {
+            .content {
+              border-top-left-radius: 0;
+            }
+          }
+          .me {
+            flex-direction: row-reverse;
+            .content {
+              background-color: #0084ff;
+              color: white;
+              border-top-right-radius: 0;
+            }
+          }
+        }
+        .content_bottom {
+          flex: 1;
+          background-color: white;
+          display: flex;
+          &-left {
+            flex: 1;
+          }
+          &-center {
+            position: relative;
+            flex: 8;
+            display: flex;
+            align-items: center;
+            margin: auto;
+          }
+          &-right {
+            flex: 1;
+          }
+        }
+      }
     }
-    .friend_panel {
+    .detail_panel {
       padding-top: 10px;
-      background-color: thistle;
+      background-color: white;
+      .detail_top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10%;
+        .avatar {
+          .ant-avatar-lg {
+            width: 80px;
+            height: 80px;
+          }
+        }
+        .name {
+          margin-top: 10px;
+          font-size: 1.5rem;
+          font-weight: bold;
+          text-align: center;
+        }
+        .status {
+          font-weight: lighter;
+          color: rgb(161, 161, 161);
+          font-size: 0.7rem;
+        }
+      }
+      .detail_main {
+        position: relative;
+        padding: 10px;
+        overflow: auto;
+        .ant-collapse {
+          border: 0;
+          height: 550px;
+          .ant-collapse-item {
+            border: 0;
+            .ant-collapse-header {
+              .ant-collapse-expand-icon {
+                position: absolute;
+                right: 0;
+              }
+            }
+            .ant-collapse-content {
+              border: 0;
+              .ant-collapse-content-box {
+                div {
+                  padding: 10px;
+                  border-radius: 5px;
+                  span {
+                    font-size: 1.1rem;
+                    margin-right: 10px;
+                  }
+                  &:hover {
+                    background-color: rgb(247, 247, 247);
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1085px) {
+    .option_top_wrapper,
+    .detail_panel {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 858px) {
+    .ant-list-item-meta-content,
+    .list_content {
+      display: none;
     }
   }
 }

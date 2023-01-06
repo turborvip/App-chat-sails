@@ -10,13 +10,14 @@ module.exports = {
     text: {
       type: "string",
       required: true,
-      allowNull: false,
     },
-    to:{
-        type:'string',
+    userID: {
+      type: "string",
+      required: true,
     },
-    from:{
-        type:'string',
-    }
+    room: {
+      type: "string",
+      required: true,
+    },
   },
 };

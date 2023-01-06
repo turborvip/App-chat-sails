@@ -1,4 +1,4 @@
-import AntdIcon from "../../icons/AntdIcons"
+import AntdIcon from "../../icons/AntdIcons";
 
 export default {
   route: {
@@ -35,7 +35,12 @@ export default {
       {
         path: "/chat",
         name: "Chat",
-        icon: AntdIcon.MessageFilled ,
+        icon: AntdIcon.MessageFilled,
+      },
+      {
+        path: "/friend",
+        name: "Friend",
+        icon: AntdIcon.TeamOutlined,
       },
       {
         name: "List",
@@ -67,7 +72,7 @@ export default {
           {
             path: "/list/sub-page2",
             name: "sub-list2",
-            icon: AntdIcon.CrownFilled ,
+            icon: AntdIcon.CrownFilled,
           },
           {
             path: "/list/sub-page3",
@@ -76,7 +81,6 @@ export default {
           },
         ],
       },
-      
     ],
   },
   location: {

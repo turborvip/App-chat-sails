@@ -1,0 +1,53 @@
+.anchor-friend {
+  position: fixed;
+  top: 100px;
+  display: none;
+}
+.friend_wrapper {
+  background-color: #ffff;
+  border-radius: 15px;
+  min-height: 1000px;
+  height: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  .findFr {
+    .findFr_top {
+      padding: 0 20%;
+    }
+    .findFr_main {
+      margin: 50px 0px;
+    }
+    .findFr_bottom{
+        text-align: center;
+    }
+  }
+  .request {
+  }
+  .yourFr {
+  }
+}
+
+.card_custom {
+    .avatar {
+      height: 250px;
+      object-fit: cover;
+      object-position: center;
+    }
+    .card_content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      button{
+        font-weight: 500;
+      }
+    }
+  }
+
+@media (min-width: 1600px) {
+  .anchor-friend {
+    right: 10%;
+    display: block;
+  }
+}

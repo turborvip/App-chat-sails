@@ -1,11 +1,4 @@
-import {
-  AutoComplete,
-  Avatar,
-  Button,
-  Divider,
-  Input,
-  List,
-} from "antd";
+import { AutoComplete, Avatar, Button, Divider, Input, List } from "antd";
 import { useEffect, useState } from "react";
 import AntdIcon from "../../components/icons/AntdIcons";
 
@@ -57,28 +50,31 @@ function Option(props: Props) {
 
   return (
     <div>
-      <div className="option_top d-flex-center gap-2">
-        <AutoComplete
-          className="option_top-search"
-          style={{ width: 200 }}
-          options={props.dataFriends}
-          placeholder="Search for friend"
-          filterOption={(inputValue, option: any) =>
-            option!.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
-          }
-        >
-          <Input suffix={AntdIcon.SearchOutlined} />
-        </AutoComplete>
-        <div className="option_top-btn d-flex gap">
-          <div>
-            <Button icon={AntdIcon.UserAddOutlined} />
-          </div>
-          <div>
-            <Button icon={AntdIcon.UsergroupAddOutlined} />
+      <div className="option_top_wrapper">
+        <div className="option_top d-flex-center gap-2">
+          <AutoComplete
+            className="option_top-search"
+            style={{ width: 200 }}
+            options={props.dataFriends}
+            placeholder="Search for messages..."
+            filterOption={(inputValue, option: any) =>
+              option!.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
+              -1
+            }
+          >
+            <Input suffix={AntdIcon.SearchOutlined} />
+          </AutoComplete>
+          <div className="option_top-btn d-flex gap">
+            <div>
+              <Button type="ghost" icon={AntdIcon.UserAddOutlined} />
+            </div>
+            <div>
+              <Button type="ghost" icon={AntdIcon.UsergroupAddOutlined} />
+            </div>
           </div>
         </div>
+        <Divider />
       </div>
-      <Divider />
       <div className="option_main">
         <List
           dataSource={data}
@@ -87,9 +83,12 @@ function Option(props: Props) {
               <List.Item.Meta
                 avatar={<Avatar src={item.picture.large} />}
                 title={<a href="https://ant.design">{item.name.last}</a>}
-                description={item.email}
+                description={<div className={'list_item-description'}>{item.email}</div>}
               />
-              <div>Content</div>
+              <div className={'list_content'}>
+                <div className="timestamp">49m</div>
+                <div className="num_new_mes"><Button type={'primary'} shape={'circle'} size={'small'}>3</Button></div>
+              </div>
             </List.Item>
           )}
         />

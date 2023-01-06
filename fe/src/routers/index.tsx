@@ -14,7 +14,10 @@ const Admin = React.lazy(() => import("../page/Admin"));
 const TodoList = React.lazy(() => import("../page/Admin/TodoList"));
 
 // chat page
-const Chat = React.lazy(() => import("../page/Chat/Chat"));
+const Chat = React.lazy(() => import("../page/Chat"));
+
+// friend page
+const Friend = React.lazy(() => import("../page/Friend"));
 
 interface Router {
   path: string;
@@ -49,6 +52,10 @@ let privateRouters: Router[] = [
   { path: "/admin/todo", name: "To Do List", component: TodoList },
   // chat router
   { path: "/chat", name: "Chat", component: Chat },
+  // friend router
+  { path: "/friend", name: "Friend", component: Friend },
+  
+
 
 ];
 
