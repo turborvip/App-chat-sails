@@ -9,13 +9,12 @@
  */
 
 module.exports.policies = {
-
   /***************************************************************************
-  *                                                                          *
-  * Default policy for all controllers and actions, unless overridden.       *
-  * (`true` allows public access)                                            *
-  *                                                                          *
-  ***************************************************************************/
+   *                                                                          *
+   * Default policy for all controllers and actions, unless overridden.       *
+   * (`true` allows public access)                                            *
+   *                                                                          *
+   ***************************************************************************/
   // '*': true,
   // Example
   // UserController: {
@@ -23,7 +22,14 @@ module.exports.policies = {
   //   '*': 'auth',
   // },
   TasksController: {
-    '*': 'auth',
-  },  
+    "*": "auth",
+  },
 
+  ChatController: {
+    "*": "auth",
+  },
+
+  FriendController: {
+    "*": "auth",
+  },
 };

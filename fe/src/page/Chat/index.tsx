@@ -13,13 +13,13 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 
 function Chat() {
 
-  useEffect(() => {
-    // Connect to the Socket.io server
-    const socket = connect();
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
+  // useEffect(() => {
+  //   // Connect to the Socket.io server
+  //   const socket = connect();
+  //   return () => {
+  //     socket.disconnect();
+  //   };
+  // }, []);
 
   const layout1 = [
     { i: "option", x: 0, y: 0, w: 5, h: 5, static: true },

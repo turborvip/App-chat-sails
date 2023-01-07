@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from '../services/axios';
+import { connect } from '../services/socketIO';
 import local from '../utils/localStorage';
 interface Account {
   username: string;
@@ -12,6 +13,7 @@ interface LoginState {
   error: string;
   accessToken: string | null;
   userInfo: object;
+  socket: any
 }
 
 const initialState: LoginState = {
@@ -20,6 +22,7 @@ const initialState: LoginState = {
   error: '',
   accessToken: null,
   userInfo: {},
+  socket: undefined
 };
 
 export const loginInClient = createAsyncThunk(
@@ -34,7 +37,6 @@ export const loginInClient = createAsyncThunk(
   }
 );
 
-
 const userSlice = createSlice({
   name: 'login',
   initialState,
@@ -44,10 +46,14 @@ const userSlice = createSlice({
       state.isLogged = false;
       local.clear();
     },
+    setSocket: (state, action) => {
+      console.log(action.payload)
+      state.socket = action.payload.socket;
+    }
   },
   extraReducers: (builder) => {
     builder
-      .addCase(loginInClient.pending, (state, action) => {
+      .addCase(loginInClient.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(loginInClient.fulfilled, (state, action: any) => {
@@ -69,7 +75,6 @@ const userSlice = createSlice({
         }
       })
       .addCase(loginInClient.rejected, (state, action: any) => {
-        console.log('aaaa')
         state.isLoading = false;
         state.error = action.payload.error;
       })
@@ -77,4 +82,4 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
-export const { logout } = userSlice.actions;
+export const { logout,setSocket } = userSlice.actions;

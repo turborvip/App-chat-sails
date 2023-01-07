@@ -1,53 +1,13 @@
-import { Anchor, Button, Card, Col, Divider, Input, Row } from "antd";
+import { Anchor, Button, Card, Col, Divider, Row } from "antd";
 import Meta from "antd/es/card/Meta";
+import FindFr from "./FindFr";
 import "./styles.less";
-const { Search } = Input;
 
 function Friend() {
-  const onSearch = (value: string) => console.log(value);
   return (
     <>
       <div className="container friend_wrapper">
-        <div className="findFr" id="findFr">
-          <div className="findFr_top">
-            <Search
-              placeholder="Enter key word..."
-              onSearch={onSearch}
-              enterButton
-            />
-          </div>
-          <div className="findFr_main">
-            <Row gutter={[2, { xs: 6, sm: 12, md: 24, lg: 2, xl: 24 }]}>
-              <Col
-                xs={24}
-                sm={12}
-                md={12}
-                lg={6}
-                xl={6}
-                className={"d-flex-center"}
-              >
-                <Card
-                  hoverable
-                  style={{ width: 240 }}
-                  className={"card_custom"}
-                  cover={
-                    <img
-                      className="avatar"
-                      alt="avatar"
-                      src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                    />
-                  }
-                >
-                  <div className="card_content">
-                    <Button type="primary">Add friend</Button>
-                    {/* <Button danger>Remove</Button> */}
-                  </div>
-                </Card>
-              </Col>
-            </Row>
-          </div>
-          <div className="findFr_bottom"></div>
-        </div>
+        <FindFr />
         <Divider />
         <div className="request" id="request">
           <h3 className="mb-2">Request add friend</h3>

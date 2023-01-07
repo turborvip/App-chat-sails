@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import routes from '../src/routers';
 import Loader from './components/Loader';
@@ -6,15 +6,12 @@ import { DefaultLayout } from './components/Layout';
 import PrivateRoute from './routers/PrivateRoute';
 
 const App: FC = () => {
-  // function initApp = useCallback(async () => {
-  //     await
-  //   },
-  //   [second],
-  // )
 
-  // useEffect(() => {
-  //   initApp();
-  // },[])
+  
+  //  useEffect(() => {
+ 
+  //   };
+  // }, []);
 
   return (
     <Router>

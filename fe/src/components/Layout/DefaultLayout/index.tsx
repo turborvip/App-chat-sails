@@ -103,8 +103,9 @@ const DefaultLayout: React.FC<{ children: React.ReactNode }> = ({
         height: "100vh",
       }}
     >
-      <ProConfigProvider hashed={false}>
+      <ProConfigProvider hashed={false} >
         <ProLayout
+          locale={'en-US'}
           {...settings}
           {...defaultProps}
           title="Turborvip"

@@ -1,5 +1,6 @@
 import axios from "./axios";
 import{SignUpPayload} from '../interface/user/signup'
+import { FindFriendPayload } from "../interface/friend/friend";
 
 // user api
 export const register = async (data:SignUpPayload) => {
@@ -12,3 +13,11 @@ export const register = async (data:SignUpPayload) => {
 };
 
 // friend api
+export const findFriend = async (data:FindFriendPayload) => {
+  try {
+    const res = await axios.post("/friends/find", data);
+    return res;
+  } catch (error) {
+    console.log(error)
+  }
+};

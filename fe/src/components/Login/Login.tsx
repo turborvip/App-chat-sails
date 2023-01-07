@@ -3,9 +3,11 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { loginInClient } from "../../redux/userSlice";
+import { loginInClient, setSocket } from "../../redux/userSlice";
 import { useNavigate, useLocation } from "react-router-dom";
 import { formatSearch } from "../../utils/formatSearch";
+import { connect } from "../../services/socketIO";
+import localStorage from "../../utils/localStorage";
 
 const Login: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -17,11 +19,18 @@ const Login: React.FC = () => {
   const onFinish = async (values: { username: string; password: string }) => {
     setLoading(true);
     const res = await dispatch(loginInClient(values));
+    if (res?.payload) {
+       // Connect to the Socket.io server
+      const socket = connect();
+      // Dispatch an action to store the socket's ID in the state
+      // console.log(socket)
+      // dispatch(setSocket(socket.io.engine?.id));
+      // localStorage.add('socketId',socket.io.engine.id)
+    }
     setLoading(false);
   };
 
   useEffect(() => {
-    console.log("isLogged", isLogged);
     if (isLogged) {
       const search = formatSearch(location.search);
       const from = search.from || { pathname: "/welcome" };

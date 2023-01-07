@@ -21,6 +21,7 @@ module.exports.routes = {
   "POST /login": { action: "Login/postLogin" },
   "POST /register": { action: "Register/createAccount" },
 
+  // task
   "GET /getTasks": { action: "Tasks/getTasks" },
 
   // chat
@@ -28,6 +29,9 @@ module.exports.routes = {
   "GET /api/messages": "ChatController.list",
   "PUT /api/messages/:id": "ChatController.update",
   "DELETE /api/messages/:id": "ChatController.delete",
+
+  //friends{ action: "Friends/find" }
+  'POST /friends/find': 'FriendsController.find',
 
   /***************************************************************************
    *                                                                          *
