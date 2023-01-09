@@ -27,23 +27,22 @@ module.exports.bootstrap = async function (cb) {
   // ]);
   // ```
 
-  // Log connection and disconnection socket
-  // sails.io.on("connection", (socket) => {
-  //   console.log(`Client connected: ${socket.id}`);
-  //   // Listen for disconnections
-  //   socket.on("disconnect", () => {
-  //     console.log(`Client disconnected: ${socket.id}`);
-  //   });
-  // });
+  sails.on("ready", function () {
+    if (sails.hooks.http.server) {
+      console.log("ahehe");
+    }
 
-  const socketIo = require("socket.io")(sails.hooks.http.server);
+    const socketIo = require("socket.io")(sails.hooks.http.server);
 
-  // Set up a connection event listener
-  socketIo.on("connection", (socket) => {
-    console.log(`Client connected: ${socket.id}`);
-    socket.on("disconnect", () => {
-      console.log(`Client disconnected: ${socket.id}`);
+    // Set up a connection event listener
+    socketIo.on("connection", (socket) => {
+      console.log(`Client connected: ${socket.id}`);
+      socketIo.emit("new message", { message: "Hello World!" });
+      socket.on("disconnect", () => {
+        console.log(`Client disconnected: ${socket.id}`);
+      });
     });
+    module.exports.socketIo = socketIo;
   });
 
   await bootstrapAllControllers();

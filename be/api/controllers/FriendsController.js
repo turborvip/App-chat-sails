@@ -1,3 +1,5 @@
+const bootstrap = require('../../config/bootstrap');
+
 module.exports = {
   find: async function (req, res) {
     // Get the search query from the request body
@@ -17,6 +19,9 @@ module.exports = {
         skip: offset,
         limit: pageSize,
       });
+
+      // ahihi
+      bootstrap.socketIo.emit("message",{data:"ahihi"})
 
       // Count the number of friends but not the current user
       const dataCount = await Users.count({ id: { "!=": userID } });
