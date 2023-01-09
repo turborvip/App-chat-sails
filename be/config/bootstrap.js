@@ -8,9 +8,9 @@
  * For more information on seeding your app with fake data, check out:
  * https://sailsjs.com/config/bootstrap
  */
+var sails = require("sails");
 
-module.exports.bootstrap = async function(cb) {
-
+module.exports.bootstrap = async function (cb) {
   // By convention, this is a good place to set up fake data during development.
   //
   // For example:
@@ -28,19 +28,28 @@ module.exports.bootstrap = async function(cb) {
   // ```
 
   // Log connection and disconnection socket
-  sails.io.on("connection", (socket) => {
+  // sails.io.on("connection", (socket) => {
+  //   console.log(`Client connected: ${socket.id}`);
+  //   // Listen for disconnections
+  //   socket.on("disconnect", () => {
+  //     console.log(`Client disconnected: ${socket.id}`);
+  //   });
+  // });
+
+  const socketIo = require("socket.io")(sails.hooks.http.server);
+
+  // Set up a connection event listener
+  socketIo.on("connection", (socket) => {
     console.log(`Client connected: ${socket.id}`);
-    // Listen for disconnections
     socket.on("disconnect", () => {
       console.log(`Client disconnected: ${socket.id}`);
     });
   });
 
   await bootstrapAllControllers();
-  console.log('Server is already!');
+  console.log("Server is already!");
 
   cb();
-
 };
 
 let bootstrapAllControllers = async () => {
@@ -52,4 +61,4 @@ let bootstrapAllControllers = async () => {
     }
   }
   await Promise.all(promises);
-}
+};
